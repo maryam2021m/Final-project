@@ -1,0 +1,49 @@
+{% load static %}
+<!-- دکمه منوی همبرگری -->
+<i class="bi bi-list btn-open bg-light active-side" onclick="show()"></i>
+<!--  منوی همبرگری -->
+<section class="d-flex flex-column flex-shrink-0 p-3 bg-light section-sidebar active-side">
+    <!-- پروفایل -->
+    <div class="dropdown">
+        <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="{% static 'Image/profile.png' %}" alt="profile" width="32" height="32" class="rounded-circle me-2">
+            <strong>پروفایل</strong>
+        </a>
+        <ul class="dropdown-menu shadow">
+            <li><a class="dropdown-item" href="{% url 'logout' %}">خروج</a></li>
+        </ul>
+    </div>
+    <hr>
+    <!-- منو ها -->
+    <ul class="nav nav-pills flex-column mb-auto">
+        <li class="nav-item">
+            <a href="{% url 's_get_project' %}" class="nav-link {% if active_tab == 'get_project' %}active{% else %}link-dark{% endif %}">
+                <i class="bi bi-file-earmark-ppt-fill me-2"></i>
+                اخذ پروژه
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="{% url 's_suggest_project' %}" class="nav-link {% if active_tab == 'project_suggestion' %}active{% else %}link-dark{% endif %}">
+                <i class="bi bi-sticky-fill me-2"></i>
+                پیشنهاد موضوع پروژه
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="{% url 's_report_parts' %}" class="nav-link {% if active_tab == 'report_parts_list' or active_tab == 'report_part_detail' %}active{% else %}link-dark{% endif %}">
+                <i class="bi bi-pencil-fill me-2"></i>
+                گزارش ها و تکالیف
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="{% url 's_final_report' %}" class="nav-link {% if active_tab == 'student_final_report' %}active{% else %}link-dark{% endif %}">
+                <i class="bi bi-pencil-square me-2"></i>
+                گزارش نهایی
+            </a>
+        </li>
+    </ul>
+    <hr>
+    <!-- پا صفحه -->
+    <span class="text-muted small w-100 text-center">
+        Powered by Bootstrap
+    </span>
+</section>

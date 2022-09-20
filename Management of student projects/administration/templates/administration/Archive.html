@@ -1,0 +1,28 @@
+{% extends 'administration/includes/_layout.html' %}
+{% load static %}
+{% block title %}بایگانی{% endblock %}
+{% block content %}
+<!-- بخش اصلی صفحه -->
+<section class="main active-side">
+    <table class="table table-primary table-striped list-final-report">
+        <!-- منو -->
+        <tr>
+            <th>نام</th>
+            <th>نام خانوادگی</th>
+            <th> موضوع </th>
+            <th> پروژه </th>
+        </tr>
+        <!-- بدنه و ایتم ها -->
+        {% for report in archive_reports %}
+        <tr>
+            <td>{{ report.student.firstname }}</td>
+            <td>{{ report.student.lastname }}</td>
+            <td>{{ report.project.title }}</td>
+            <td>
+                <a href="/administrators/archive-report-list/{{ report.id }}"> نمایش </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</section>
+{% endblock %}

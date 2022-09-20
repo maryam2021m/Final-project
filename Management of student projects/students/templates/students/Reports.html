@@ -1,0 +1,58 @@
+{% extends 'students/includes/_layout.html' %}
+{% load static %}
+{% block title %}گزارشات{% endblock %}
+{% block content %}
+<!-- بخش اصلی پروژه -->
+<section class="main active-side">
+    <div class="form">
+        <!-- توضحات آپلود کردن -->
+        <h5 class="mb-3">ارسال گزارش <span class="text-primary">{{ number }}</span> پروژه</h5>
+        <p>
+            <p class="small bg-primary text-light p-1 rounded d-inline">
+                <span>گزارش شماره {{ number }}</span>
+            </p>
+            <br><br>
+            فایل تکالیف یا گزارش پروژه خود را بارگزاری کنید و ذخیره کنید.
+            <br>
+            <ol>
+                <li>فایل پروژه تا این گزارش با فرمت zip یا rar</li>
+                <li>قالب گزارش (pdf)</li>
+            </ol>
+            <span class="small text-muted">
+                درصورتی که فایل پروژه شما بیش از 10MB است، فایل های خود را در جایی بارگزاری کنید و لینک دانلود آن
+                را در
+                بخش توضیحات ارسال کنید.
+            </span>
+        </p>
+        <!-- فرم آپلود فایل های نهایی پروژه -->
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <!-- باکس آپلود -->
+            <div class="file-drop-area mb-3">
+                {% if student_report %}
+                {% if student_report.file %}
+                <span class="file-msg">
+                    <a href="{{ student_report.file.url }}">فایل قبلی</a>
+                </span>
+                {% else %}
+                <span class="file-msg">شما فایلی بارگزاری نکردید</span>
+                {% endif %}
+                {% else %}
+                <span class="fake-btn">انتخاب فایل ها</span>
+                <span class="file-msg">یا کشیدن و رها کردن</span>
+                <input name="report_file" class="file-input" type="file">
+                {% endif %}
+            </div>
+            <!-- توضیحات -->
+            <div class="mb-3">
+                <label for="PrpjectDiscripiton" class="form-label">توضیحات اختیاری</label>
+                <textarea name="description" class="form-control" id="PrpjectDiscripiton" cols="5" rows="4" {% if student_report %} disabled {% endif %}>{{ student_report.description }}</textarea>
+            </div>
+            {% if not student_report %}
+            <button type="submit" class="btn btn-blue w-25 py-2">ذخیره</button>
+            {% endif %}
+            <a href="{% url 's_report_parts' %}" class="btn btn-secondary w-25 py-2">لغو</a>
+        </form>
+    </div>
+</section>
+{% endblock %}

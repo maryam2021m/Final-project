@@ -1,0 +1,22 @@
+{% extends 'administration/includes/_layout.html' %}
+{% load static %}
+{% block title %}لیست پروژه‌ها{% endblock %}
+{% block content %}
+<!-- بخش اصلی صفحه -->
+<section class="main active-side">
+    <div class="list-group list-group-checkable  gap-2 w-auto">
+        <!-- ایتم های انتخاب پروژه -->
+        {% for project in projects %}
+        <div>
+            <label class="list-group-item rounded-3 py-3">
+                <span>{{ project.title }}</span>
+                <div class="small opacity-50 d-flex justify-content-between">
+                    <span>{{ project.get_type_display  }}</span>
+                    <span> <strong>{{ project.get_number_of_students_display }}</strong> نفره </span>
+                </div>
+            </label>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'students/includes/_layout.html' %}
+{% load static %}
+{% block title %}گزارشات پروژه{% endblock %}
+{% block content %}
+<!-- بخش اصلی صفحه -->
+<section class="main active-side">
+    <!-- گزارش ها و تکالیف -->
+    <div class="form">
+        <h5 class="mb-3"> گزارش ها و تکالیف ترم درس پروژه </h5>
+        <!-- ایتم ها -->
+        {% for part in report_parts %}
+        <div class="mb-2">
+            <button class="btn btn-toggle rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse{{ part.id }}" aria-expanded="false">
+                گزارش {{ part.number }}
+            </button>
+
+            <div class="collapse" id="dashboard-collapse{{ part.id }}">
+                <div class="card card-body">
+                    <div>
+                        <i class="bi bi-file-earmark-check-fill"></i>
+                        <a href="/students/report-parts/{{ part.id }}">آپلود فایل گزارش اول</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}
